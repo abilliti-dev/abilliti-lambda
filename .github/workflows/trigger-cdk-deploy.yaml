@@ -1,0 +1,19 @@
+name: Trigger CDK Deploy on Lambda Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-cdk-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send dispatch event to CDK repo
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: token ${{ secrets.CDK_DEPLOY_PAT }}" \
+            https://api.github.com/repos/abilliti-dev/abilliti-backend-cdk/dispatches \
+            -d '{"event_type":"lambda-updated"}'
