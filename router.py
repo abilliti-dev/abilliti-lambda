@@ -1,4 +1,4 @@
-from handlers import hello, another_func
+from handlers import hello
 
 
 def route_request(event, context):
@@ -7,8 +7,6 @@ def route_request(event, context):
 
     if path == "/hello" and method == "GET":
         return hello.handle(event, context)
-    elif path == "/another" and method == "POST":
-        return another_func.handle(event, context)
     else:
         return {
             "statusCode": 404,
