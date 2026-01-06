@@ -1,0 +1,40 @@
+# -----------------------------
+# API Gateway Mapping Templates
+# -----------------------------
+
+# 1. POST /auth/sign-in
+{
+  "action": "sign_in",
+  "username": "$input.path('$.username')",
+  "password": "$input.path('$.password')"
+}
+
+# 2. POST /auth/sign-up
+{
+  "action": "sign_up",
+  "email": "$input.path('$.email')",
+  "password": "$input.path('$.password')",
+  "firstName": "$input.path('$.firstName')",
+  "lastName": "$input.path('$.lastName')"
+}
+
+# 3. POST /auth/confirm-sign-up
+{
+  "action": "confirm_sign_up",
+  "username": "$input.path('$.username')",
+  "confirmationCode": "$input.path('$.confirmationCode')"
+}
+
+# 4. POST /auth/reset-password
+{
+  "action": "reset_password",
+  "email": "$input.path('$.email')"
+}
+
+# 5. POST /auth/confirm-reset-password
+{
+  "action": "confirm_reset_password",
+  "email": "$input.path('$.email')",
+  "verificationCode": "$input.path('$.verificationCode')",
+  "password": "$input.path('$.password')"
+}
